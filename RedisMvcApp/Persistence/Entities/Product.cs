@@ -1,6 +1,9 @@
 
 using RedisMvcApp.Persistence.Entities;
 
+namespace RedisMvcApp.Persistence.Entities;
+
+
 /// <summary>
 /// Product entity
 /// </summary>
@@ -29,5 +32,5 @@ public sealed class Product : BaseEntity
     }
 }
 
-[StronglyTypedId()]
+[StronglyTypedId(jsonConverter: StronglyTypedIdJsonConverter.SystemTextJson)]
 public partial struct ProductId { }

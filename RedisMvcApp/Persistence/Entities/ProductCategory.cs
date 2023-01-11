@@ -1,3 +1,6 @@
+using RedisMvcApp.Persistence.Entities;
+
+
 /// <summary>
 /// Product category entity
 /// </summary>
@@ -19,5 +22,5 @@ internal class ProductCategory : BaseEntity
     public string CategoryDescription { get; set; }
 }
 
-[StronglyTypedId]
+[StronglyTypedId(jsonConverter: StronglyTypedIdJsonConverter.SystemTextJson)]
 internal partial struct ProductCategoryId { }

@@ -18,44 +18,67 @@ namespace RedisMvcApp.Model.Test
         [Fact]
         public void NewQuantityCreated_ShouldBeOutOfStock()
         {
-            throw new NotImplementedException();
+            Assert.True(_Quantity.OutOfStock);
         }
 
         [Fact]
         public void ItemOutOfStock()
         {
-            throw new NotImplementedException();
+            _Quantity = _Quantity + 4;
+            _Quantity = _Quantity - 4;
+
+            Assert.True(_Quantity.OutOfStock);
+        }
+
+        [Fact]
+        public void QuantityDecreasedLessThanZero_ShouldThrowException()
+        {
+            _Quantity = _Quantity + 4;
+
+            Assert.Throws<InvalidOperationException>(() => _Quantity - 6);
         }
 
         [Fact]
         public void ItemLowOnStock()
         {
-            throw new NotImplementedException();
+            _Quantity = _Quantity + 4;
+            _Quantity = _Quantity - 3;
+
+            Assert.True(_Quantity.LowOnStock(2));
         }
 
         [Fact]
         public void IncreaseQuantity()
         {
-            throw new NotImplementedException();
+            _Quantity = _Quantity + 4;
+
+            Assert.Equal(4, _Quantity);
         }
 
         [Fact]
         public void DecreaseQuantity()
         {
-            throw new NotImplementedException();
+            _Quantity = _Quantity + 4;
+            _Quantity = _Quantity - 3;
+
+            Assert.Equal(1, _Quantity);
         }
 
         [Fact]
         public void GetQuantityValue()
         {
-            throw new NotImplementedException();
+            _Quantity = _Quantity + 4;
+
+            Assert.Equal(4, _Quantity);
         }
 
 
         [Fact]
         public void IfItemInStock_ShouldPass()
         {
-            Quantity.
+            _Quantity = _Quantity + 4;
+
+            Assert.True(_Quantity.InStock);
         }
 
         private Quantity _Quantity;

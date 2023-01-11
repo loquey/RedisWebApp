@@ -24,7 +24,7 @@ public class ProductSeller : BaseEntity
     public Quantity ProductQuantity { get; set; }
 }
 
-[StronglyTypedId]
+[StronglyTypedId(jsonConverter: StronglyTypedIdJsonConverter.SystemTextJson)]
 public partial struct ProductSellerId { }
 
 
@@ -68,7 +68,11 @@ public struct Quantity
     /// <param name="rhs">Quantity to be increased </param>
     /// <param name="lhs">Inrease quantity by</param>
     /// <returns></returns>
-    public static Quantity operator -(Quantity rhs, int lhs) => rhs + (-lhs);
+    public static Quantity operator -(Quantity rhs, int lhs) =>
+        lhs > rhs 
+            ? throw new InvalidOperationException("Value is higher that available quantity")
+            : rhs + (-lhs);
+
 
     public static implicit operator int(Quantity rhs) => rhs._Quantity;
 
