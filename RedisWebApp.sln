@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisMvcApp", "RedisMvcApp\RedisMvcApp.csproj", "{1239EF94-EB5F-4184-9DC9-136E31CC13C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9D7A8B1D-E24B-4D04-B61D-542CD5A2BA10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisMvcApp.Model.Test", "RedisMvcApp.Model.Test\RedisMvcApp.Model.Test.csproj", "{2E895E25-278E-450D-9D0B-A42831730D54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1239EF94-EB5F-4184-9DC9-136E31CC13C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1239EF94-EB5F-4184-9DC9-136E31CC13C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1239EF94-EB5F-4184-9DC9-136E31CC13C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1239EF94-EB5F-4184-9DC9-136E31CC13C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E895E25-278E-450D-9D0B-A42831730D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E895E25-278E-450D-9D0B-A42831730D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E895E25-278E-450D-9D0B-A42831730D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E895E25-278E-450D-9D0B-A42831730D54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E895E25-278E-450D-9D0B-A42831730D54} = {9D7A8B1D-E24B-4D04-B61D-542CD5A2BA10}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A171536A-8299-4498-8674-8BBF2F45DF08}
+	EndGlobalSection
+EndGlobal
