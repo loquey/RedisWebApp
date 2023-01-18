@@ -1,7 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+using RedisMvcApp.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(
+    opt =>
+    {
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("ProductContext"));
+        opt.ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();// add this line
+
+    });
 
 var app = builder.Build();
 

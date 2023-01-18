@@ -1,4 +1,6 @@
 
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
 namespace RedisMvcApp.Persistence.Entities;
 
 /// <summary>
@@ -14,7 +16,7 @@ public class ProductSeller : BaseEntity
     /// <summary>
     /// Foreign key product Id
     /// </summary>
-    public ProductId ProductId { get; set; }
+    public ProductIdType ProductId { get; set; }
 
     /// <summary>
     /// Product navigation property
@@ -24,7 +26,7 @@ public class ProductSeller : BaseEntity
     public Quantity ProductQuantity { get; set; }
 }
 
-[StronglyTypedId(jsonConverter: StronglyTypedIdJsonConverter.SystemTextJson)]
+[StronglyTypedId(backingType: StronglyTypedIdBackingType.Guid, converters: StronglyTypedIdConverter.EfCoreValueConverter | StronglyTypedIdConverter.SystemTextJson)]
 public partial struct ProductSellerId { }
 
 
@@ -49,6 +51,14 @@ public struct Quantity
     /// <param name="minimumStock">Minimum number of stock required</param>
     /// <returns></returns>
     public bool LowOnStock(int minimumStock) => _Quantity < minimumStock;
+
+    public Quantity(int quantity)
+    {
+        if (quantity < 0)
+            throw new ArgumentOutOfRangeException(nameof(quantity), $"Invalid quantity {quantity}, Specify a quantity greater than zero");
+
+        _Quantity = quantity;
+    }
 
     /// <summary>
     /// Increase quantity by a value
@@ -80,4 +90,16 @@ public struct Quantity
     /// Quantity Store
     /// </summary>
     private int _Quantity;
+
+    public class EfCoreValueConverter : ValueConverter<Quantity, int>
+    {
+        public EfCoreValueConverter() : this(null) { }
+        public EfCoreValueConverter(ConverterMappingHints mappingHints = null)
+            : base(
+                id => id,
+                value =>  new Quantity(value),
+                mappingHints
+            )
+        { }
+    }
 }

@@ -12,7 +12,7 @@ public abstract class BaseEntity
     public DateTimeOffset DateAdded { get; set; }
 
     /// <summary>
-    /// DAte the entity was last modifed
+    /// Date the entity was last modifed
     /// </summary>
     public DateTimeOffset? LastModifed { get; set; }
 }

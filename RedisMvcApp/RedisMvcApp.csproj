@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Entityframeworkcore.design" Version="7.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
-    <PackageReference Include="StronglyTypedId" Version="0.2.1" />
+    <PackageReference Include="StronglyTypedId" Version="1.0.0-beta06" />
   </ItemGroup>
 
 </Project>

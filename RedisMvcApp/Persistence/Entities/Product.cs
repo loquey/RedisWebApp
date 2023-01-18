@@ -22,15 +22,16 @@ public sealed class Product : BaseEntity
     /// <summary>
     /// Product Identifier
     /// </summary>
-    public ProductId ProductId { get; set; }
+    public ProductIdType ProductId { get; set; }
 
     public Product(string productName)
     {
+
         if (string.IsNullOrEmpty(productName))
             throw new ArgumentNullException("Invalid or empty product name. Please supply a valid product name");
         ProductName = ProductName;
     }
 }
 
-[StronglyTypedId(jsonConverter: StronglyTypedIdJsonConverter.SystemTextJson)]
-public partial struct ProductId { }
+[StronglyTypedId(backingType: StronglyTypedIdBackingType.Guid, converters: StronglyTypedIdConverter.EfCoreValueConverter | StronglyTypedIdConverter.SystemTextJson)]
+public partial struct ProductIdType { }
