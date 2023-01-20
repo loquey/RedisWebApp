@@ -1,15 +1,15 @@
-namespace RedisMvcApp.Persistence.Entities;
+namespace RedisMvcApp.Models.Products;
 
 
 /// <summary>
 /// Product category entity
 /// </summary>
-public class ProductCategory : BaseEntity
+public class ProductCategoryModel
 {
     /// <summary>
     /// Category Identifier for the product 
     /// </summary>
-    public ProductCategoryId ProductCategoryId { get; set; }
+    public Guid ProductCategoryId { get; set; }
 
     /// <summary>
     /// Category name
@@ -21,6 +21,3 @@ public class ProductCategory : BaseEntity
     /// </summary>
     public string CategoryDescription { get; set; }
 }
-
-[StronglyTypedId(backingType: StronglyTypedIdBackingType.Guid, converters: StronglyTypedIdConverter.EfCoreValueConverter | StronglyTypedIdConverter.SystemTextJson)]
-public partial struct ProductCategoryId { }

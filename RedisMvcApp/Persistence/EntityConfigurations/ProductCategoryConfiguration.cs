@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+using RedisMvcApp.Persistence.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RedisMvcApp.Persistence.EntityConfigurations
 {
-    internal class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCategory>
+    public class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCategory>
     {
         public void Configure(EntityTypeBuilder<ProductCategory> builder)
         {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RedisMvcApp.Persistence.EntityConfigurations
 {
-    internal class ProductSellerConfiguration : IEntityTypeConfiguration<ProductSeller>
+    public class ProductSellerConfiguration : IEntityTypeConfiguration<ProductSeller>
     {
         public void Configure(EntityTypeBuilder<ProductSeller> builder)
         {
