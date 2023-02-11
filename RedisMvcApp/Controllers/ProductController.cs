@@ -4,13 +4,16 @@ using RedisMvcApp.Models.Products;
 using RedisMvcApp.Persistence;
 using RedisMvcApp.Persistence.Entities;
 
+using StackExchange.Redis;
+
 namespace RedisMvcApp.Controllers
 {
     public class ProductController : Controller
     {
-        public ProductController(AppDbContext dbContext)
+        public ProductController(AppDbContext dbContext, ConnectionMultiplexer connectionMultiplexer)
         {
             _DbContext = dbContext;
+            _ConnectionMultiplexer = connectionMultiplexer;
         }
 
         public IActionResult Index()
@@ -45,8 +48,14 @@ namespace RedisMvcApp.Controllers
                 ProductCategoryId = new ProductCategoryId(Guid.NewGuid())
             };
 
+            
+
             _DbContext.Add(product);
             await _DbContext.SaveChangesAsync();
+
+            var redisConn = _ConnectionMultiplexer.GetDatabase();
+            await redisConn.HashSetAsync(model.CategoryName, "description", product.CategoryDescription, When.Always);
+            await redisConn.HashSetAsync(model.CategoryName, "catid", product.ProductCategoryId.ToString(), When.Always);
 
             return View();
         }
@@ -62,5 +71,6 @@ namespace RedisMvcApp.Controllers
         public IActionResult AddProductSellers() { return View(); }
 
         private AppDbContext _DbContext;
+        private ConnectionMultiplexer _ConnectionMultiplexer;
     }
 }

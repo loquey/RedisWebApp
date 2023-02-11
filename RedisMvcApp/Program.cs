@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+using RedisMvcApp.Configuration;
 using RedisMvcApp.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddStackExchangeRedis(options =>
+{
+    options.Servers = "192.168.2.33";
+});
 
 builder.Services.AddDbContext<AppDbContext>(
     opt =>
